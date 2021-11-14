@@ -37,22 +37,27 @@ body {
     padding: 0.5rem 1rem;
     background-color: var(--secondary-color);
     border-radius: 0.5rem;
+    cursor: pointer;
 }
 
 .btn-remove {
-    position: absolute;
+    cursor: pointer;
+    position: relative;
     right: 0;
     top: 0;
     opacity: 0.4;
     transition: opacity 0.4s ease-in-out;
+    min-width: 27px;
 }
+
 .btn-remove:hover {
     opacity: 1;
 }
 
   .btn-remove:before, .btn-remove:after {
     position: absolute;
-    left: 0;
+    top: 25%;
+    right: 50%;
     content: '';
     height: 18px;
     width: 2px;
@@ -72,15 +77,22 @@ body {
     background-color: var(--primary-color);
     border-radius: 0.5rem;
     border: 1px solid var(--secondary-color);
-    margin-bottom: 1rem;
+    padding: 0.2rem 1rem;
 }
 
 .player-wrapper {
     position: relative;
+    justify-content: space-between;
+    margin-bottom: 1rem;
 }
 
 .teams,
 .players,
 .randomize {
     padding: 2rem;
+}
+
+.result {
+    justify-content: space-around;
+    width: 100%;
 }

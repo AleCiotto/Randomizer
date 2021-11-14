@@ -1,6 +1,9 @@
 const addOneMoreInput = document.querySelector('#addOneMoreInput');
 const inputsWrapper = document.querySelector('.inputs-wrapper');
 const randomizerButton = document.querySelector('#randomizer');
+const resultWrapper = document.querySelector('.result');
+const teamsNumberInput = document.querySelector('#teamsNumber');
+const randomizerForm = document.querySelector('#randomizerForm');
 let playerCount = inputsWrapper.querySelectorAll('input[type="text"]').length;
 let removePlayerButtons = inputsWrapper.querySelectorAll('.btn-remove');
 let playerUsedPositions = [];
@@ -19,15 +22,21 @@ function createPlayerRemover() {
     return playerRemover;
 }
 
-function createPlayerWrapper() {
+function createPlayerWrapper(insertRemover = true) {
     let playerWrapper = document.createElement('div');
     playerWrapper.classList.add('player-wrapper');
     
-    let newInput = createPlayerInput();
-    let removeBtn = createPlayerRemover();
+    playerWrapper.append(createPlayerInput());
+    
+    if (insertRemover) {
+        playerWrapper.classList.add('flex');
 
-    playerWrapper.append(newInput);
-    playerWrapper.append(removeBtn);
+        try {
+            playerWrapper.append(createPlayerRemover());
+        } catch (error) {
+            console.error('An error is occured, maybe a loop...');
+        }
+    }
 
     return playerWrapper;
 }
@@ -55,25 +64,47 @@ for (const removeBtn of removePlayerButtons) {
 
 // Randomizing
 
-function getRandomInt(max) {
+function getRandomInt(max, loopCheck = 0) {
+    if (loopCheck > 999) return max;
+
     let randomInt = Math.floor(Math.random() * max);
     
     if (playerUsedPositions.indexOf(randomInt) > -1) {
-      randomInt = getRandomInt(max);
+      randomInt = getRandomInt(max, loopCheck + 1);
     }
       
     playerUsedPositions.push(randomInt);
     
     return randomInt;
-  }
+}
+
+function createTeamsWrapper(teamsCount) {
+    resultWrapper.innerHTML = '';
+
+    for (let i = 0; i < teamsCount; i++) {
+        let teamWrapper = document.createElement('div');
+        teamWrapper.classList.add(`team`, `team-${i}`);
+        resultWrapper.append(teamWrapper);
+    }
+}
+
+function putPlayerInItsTeam(playerElem, position, teamsCount) {
+    const player = playerElem.cloneNode();
+    player.setAttribute('disabled', '');
+    const playerTeam = resultWrapper.querySelector(`.team-${position % teamsCount}`);
+    playerTeam.append(player);
+}
 
 function randomizePlayers() {
-    let players = document.querySelectorAll('input[name="player"]');
+    if (!randomizerForm.checkValidity()) return;
+
+    let players = document.querySelectorAll('.players input[name="player"]');
+    const teamsCount = Math.abs(parseInt(teamsNumberInput.value));
+    createTeamsWrapper(teamsCount);
 
     for (const player of players) {
         const randomIndex = getRandomInt(players.length);
-        console.log(randomIndex);
-        players[randomIndex].classList.add(`pos-${randomIndex}`);
+        putPlayerInItsTeam(player, randomIndex, teamsCount);
     }
 
     playerUsedPositions = [];

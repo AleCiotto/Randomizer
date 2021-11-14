@@ -13,17 +13,17 @@
     <header>
         <h1>Randomizer</h1>
     </header>
-    <main>
-        <div class="container">
-            <section class="flex">
+    <main class="container">
+        <section>
+            <form id="randomizerForm" class="flex" action="javascript:void(0)">
                 <div class="players flex-50">
                     <h2>Insert Players</h2>
                     <div class="inputs-wrapper">
-                        <div class="player-wrapper">
+                        <div class="player-wrapper flex">
                             <input type="text" name="player" class="input--primary" placeholder="Player 1">
                             <button class="btn-remove" aria-label="Remove Player 1"></button>
                         </div>
-                        <div class="player-wrapper">
+                        <div class="player-wrapper flex">
                             <input type="text" name="player" class="input--primary" placeholder="Player 2">
                             <button class="btn-remove" aria-label="Remove Player 2"></button>
                         </div>
@@ -32,28 +32,19 @@
                 </div>
     
                 <div class="teams flex-50">
-                    <h2>Select Team(s)</h2>
-                    <select name="Teams number" id="">
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
-                        <option value="">6</option>
-                        <option value="">7</option>
-                        <option value="">8</option>
-                    </select>
+                    <h2>Insert Team(s) Number</h2>
+                    <input type="number" name="teams" id="teamsNumber" class="input--primary" placeholder="Number of teams" required>
                 </div>
 
                 <div class="randomize flex-100">
-                    <button class="btn btn--primary btn--centered" id="randomizer">Randomize</button>
+                    <button type="submit" class="btn btn--primary btn--centered" id="randomizer">Randomize</button>
                 </div>
 
-                <div class="result">
-
+                <div class="result flex">
+                    <!-- Randomized players will be put here -->
                 </div>
-            </section>
-        </div>
+            </form>
+        </section>
     </main>
 
     
