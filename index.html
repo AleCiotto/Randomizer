@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randomizer</title>
+
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Randomizer</h1>
+    </header>
+    <main>
+        <div class="container">
+            <section class="flex">
+                <div class="players flex-50">
+                    <h2>Insert Players</h2>
+                    <div class="inputs-wrapper">
+                        <div class="player-wrapper">
+                            <input type="text" name="player" class="input--primary" placeholder="Player 1">
+                            <button class="btn-remove" aria-label="Remove Player 1"></button>
+                        </div>
+                        <div class="player-wrapper">
+                            <input type="text" name="player" class="input--primary" placeholder="Player 2">
+                            <button class="btn-remove" aria-label="Remove Player 2"></button>
+                        </div>
+                    </div>
+                    <button class="btn" id="addOneMoreInput">Add one more</button>
+                </div>
+    
+                <div class="teams flex-50">
+                    <h2>Select Team(s)</h2>
+                    <select name="Teams number" id="">
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">5</option>
+                        <option value="">6</option>
+                        <option value="">7</option>
+                        <option value="">8</option>
+                    </select>
+                </div>
+
+                <div class="randomize flex-100">
+                    <button class="btn btn--primary btn--centered" id="randomizer">Randomize</button>
+                </div>
+
+                <div class="result">
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+    
+    <script src="main.js"></script>
+</body>
+</html>
